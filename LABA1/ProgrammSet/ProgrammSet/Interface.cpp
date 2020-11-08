@@ -7,57 +7,86 @@ using namespace std;
 Interface::Interface()
 {
 	bool running = true;
+	int colA = 0, colB = 0;
+	Set s1, s2;
 
-	printMenuText();
-	while (running)
+	try
 	{
-		int input;
-		cin >> input;
-		switch (input) {
-		case 0: {
-			running = false;
-			cout << "GoodBuy" << endl;
-			break;
-		}
-		case 1: {
+		cout << "¬ведите размер множества A: ";
+		cin >> colA;
 
-			printMenuText();
-			break;
-		}
+		Set sw1(colA);
 
-		case 2: {
+		for (int i = 1; i <= colA; i++)
+		{
+			s1.Add_one_item(i, sw1);//¬вод элемента в массив
+		}
+		cout << endl;
 
-			printMenuText();
-			break;
-		}
-		case 3: {
+		cout << "¬ведите размер множества B: ";
+		cin >> colB;
 
-			printMenuText();
-			break;
-		}
-		case 4: {
+		Set sw2(colB);
 
-			printMenuText();
-			break;
+		for (int i = 1; i <= colB; i++)
+		{
+			s1.Add_one_item(i, sw2);
 		}
-		case 5: {
+		cout << endl;
 
-			printMenuText();
-			break;
-		}
-		case 6: {
+		printMenuText();
+		while (running)
+		{
+			int input;
+			cin >> input;
+			switch (input) {
+			case 0: {
+				running = false;
+				cout << "GoodBuy" << endl;
+				break;
+			}
+			case 1: {
 
-			printMenuText();
-			break;
+				printMenuText();
+				break;
+			}
+
+			case 2: {
+
+				printMenuText();
+				break;
+			}
+			case 3: {
+
+				printMenuText();
+				break;
+			}
+			case 4: {
+
+				printMenuText();
+				break;
+			}
+			case 5: {
+
+				printMenuText();
+				break;
+			}
+			case 6: {
+
+				printMenuText();
+				break;
+			}
+			}
 		}
-		}
+	}
+	catch (int)
+	{
+		cout << "ќшибка" << endl;
 	}
 }
 
 void Interface::printMenuText() {
-	cout << "\n¬ведите 1, чтобы вывести марку.\n¬ведите 2, чтобы узнать собственный номер.\n"
-		"¬ведите 3, чтобы вывести список сохраненных номеров.\n¬ведите 4, чтобы вывести количество звонков\n"
-		"¬ведите 5, чтобы вывести данные о тарифе\n"
-		"==================================================================================="
-		"\n¬ведите 6, чтобы зайти в основные функции телефона";
+	cout << "\n¬ведите 1, чтобы объеденить множества.\n¬ведите 2, чтобы вычислить пересечение множеств.\n"
+		"¬ведите 3, чтобы вычислить разность множеств.\n¬ведите 4, чтобы вычислить симетрическую разность множеств\n"
+		"===================================================================================";
 }
