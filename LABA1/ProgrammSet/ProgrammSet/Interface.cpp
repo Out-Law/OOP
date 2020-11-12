@@ -4,36 +4,49 @@
 
 using namespace std;
 
+void Interface::ChangeSet(int numberSet)
+{
+	int power;
+
+	cout << "¬ведите мщность дл€ множества: ";
+	cin >> power;
+	int* setElement = new int[power];
+
+	for (int i = 0; i < power; i++)
+	{
+		cin >> setElement[i];
+	}
+
+	set[numberSet].CreatedSet(setElement, power);
+
+	delete[] setElement;
+	cout << endl;
+}
+
+
+void Interface::CreatedTwoSet()
+{
+	for (int i = 0; i < 2; i++)
+	{
+		ChangeSet(i);
+	}
+
+}
+
+void Interface::AddElement(int numberSet)
+{
+	int element;
+	cin >> element;
+	set[numberSet].AddSetElement(element);
+}
+
 Interface::Interface()
 {
 	bool running = true;
-	int colA = 0, colB = 0;
-	Set s1, s2;
+	CreatedTwoSet();
 
 	try
 	{
-		cout << "¬ведите размер множества A: ";
-		cin >> colA;
-
-		Set sw1(colA);
-
-		for (int i = 1; i <= colA; i++)
-		{
-			s1.Add_one_item(i, sw1);//¬вод элемента в массив
-		}
-		cout << endl;
-
-		cout << "¬ведите размер множества B: ";
-		cin >> colB;
-
-		Set sw2(colB);
-
-		for (int i = 1; i <= colB; i++)
-		{
-			s1.Add_one_item(i, sw2);
-		}
-		cout << endl;
-
 		printMenuText();
 		while (running)
 		{
@@ -46,29 +59,32 @@ Interface::Interface()
 				break;
 			}
 			case 1: {
-
-				printMenuText();
+				cout << "¬ведите числом какое множество вы хотите изменить: ";
+				int numberSet;
+				cin >> numberSet;
+				cout << endl;
+				ChangeSet(numberSet);
 				break;
 			}
 
 			case 2: {
-
-				printMenuText();
+				CreatedTwoSet();
 				break;
 			}
 			case 3: {
-
-				printMenuText();
+				cout << "¬ведите числом в какое множество вы хотите добавить элемент: ";
+				int numberSet;
+				cin >> numberSet;
+				cout << endl;
+				AddElement(numberSet);
 				break;
 			}
 			case 4: {
 
-				printMenuText();
 				break;
 			}
 			case 5: {
 
-				printMenuText();
 				break;
 			}
 			case 6: {
@@ -86,7 +102,7 @@ Interface::Interface()
 }
 
 void Interface::printMenuText() {
-	cout << "\n¬ведите 1, чтобы объеденить множества.\n¬ведите 2, чтобы вычислить пересечение множеств.\n"
+	cout << "\n¬ведите 1, чтобы изменить одно из множеств.\n¬ведите 2, чтобы изменить оба множества.\n"
 		"¬ведите 3, чтобы вычислить разность множеств.\n¬ведите 4, чтобы вычислить симетрическую разность множеств\n"
-		"===================================================================================";
+		"===================================================================================" << endl;
 }

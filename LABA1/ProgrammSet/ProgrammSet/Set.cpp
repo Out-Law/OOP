@@ -3,169 +3,69 @@
 #include <string>
 using namespace std;
 
-Set::~Set()//Деструктор удаляющий объект класса
-{
-	delete[] item;
-}
-
 Set::Set(){} // Пустой конструктор
 
-Set::Set(int p)
+Set::Set(int power)
 {
-	item = new int[p];
-	col = p;
+	_elements = new int[power];
+	_power = power;
 }
 
-
-void Set::Add_one_item(int i, Set x)//Ввод элемента в массив
+Set::~Set()//Деструктор удаляющий объект класса
 {
-	int date, l, j, m = 0;
+	delete[] _elements;
+}
 
-	while (1)
+int Set::GetPower() const
+{
+	return _power;
+}
+
+//проверить выведит один или несколько элементов
+int Set::GetElements() const
+{
+	for (int i = 0; i < _power; i++)
 	{
-		l = 0;
-		j = 1;
-		m = 1;
-		cout << "Введите значение элемента: ";
-		cin >> date;
-		while (j <= i)
-		{
-			if (date == x.item[j])
-			{
-				cout << "Элемент с таким значением уже присудствует в множестве, введите другое значение элемента.\n";
-				l++;
-				break;
-			}
-			else
-			{
-				m = m + 1;
-			}
-			j++;
-		}
-
-		if (l == 0)
-		{
-			if (m == i + 1)
-			{
-				x.item[i] = date;
-				break;
-			}
-		}
+		return _elements[i];
 	}
 }
 
-void Set::printSet(Set x) //Вывод результата действий
+//создать перегрзку для метода
+void Set::CreatedSet(int* setElements, int power)
 {
-	for (int i = 1; i <= x.col; i++)
+	_power = power;
+	for (int i = 0; i < _power; i++)
 	{
-		cout << x.item[i] << " ";
+		_elements[i] = setElements[i];
 	}
+}
 
-	cout << endl << endl;
+void Set::AddSetElement(int element)//Добовление элемента в множество
+{
+	int* tempElements = _elements;
+	_elements = new int[_power+1];
+	memcpy(_elements, tempElements, sizeof(int) * _power);
+	delete[] tempElements;
+	_elements[_power] = element;
 }
 
 void Set::Unity(Set x, Set y)//функция для объединения множеств
 {
-	int j, i, m = 1, f = 0;
-	for (i = 1; i <= x.col; i++)
-	{
-		f++;
-	}
-	for (i = 1; i <= y.col; i++)
-	{
-		for (j = 1; j <= x.col; j++)
-		{
-			if (y.item[i] == x.item[j])
-			{
-				continue;
-			}
-			else
-			{
-				m++;
-			}
-		}
-
-		if (m == x.col + 1)
-		{
-			f++;
-		}
-
-		m = 1;
-	}
-
-	Set sw4(f);
-
-	f = 0;
-	for (i = 1; i <= x.col; i++)
-	{
-		f++;
-		sw4.item[i] = x.item[i];
-	}
-
-	for (i = 1; i <= y.col; i++)
-	{
-		for (j = 1; j <= x.col; j++)
-		{
-			if (y.item[i] == x.item[j])
-			{
-				continue;
-			}
-			else
-			{
-				m++;
-			}
-		}
-
-		if (m == x.col + 1)
-		{
-			f++;
-			sw4.item[f] = y.item[i];
-		}
-		m = 1;
-	}
-
-	x.printSet(sw4);//Вывод результатов действия
+	
 }
 
 void Set::Intersection(Set x, Set y)//Функция для пересечения множеств
 {
-	int l = 0, n = 1;
-
-	for (int i = 1; i <= x.col; i++)
-	{
-		for (int j = 1; j <= y.col; j++)
-		{
-			if (x.item[i] == y.item[j])
-			{
-				l++;
-			}
-		}
-	}
-
-	Set sw3(l);
-
-	for (int i = 1; i <= x.col; i++)
-	{
-		for (int j = 1; j <= y.col; j++)
-		{
-			if (x.item[i] == y.item[j])
-			{
-				sw3.item[n] = x.item[i];
-				n++;
-			}
-		}
-	}
-
-	x.printSet(sw3);//Вывод результатов действия
+	
 }
 
-bool Set::isIntersection(Set x, Set y)//Функция для определения наличия пересечения
+bool Set::isIntersection(Set firstSet, Set SecondSet)//Функция для определения наличия пересечения
 {
-	for (int i = 1; i <= x.col; i++)
+	for (int i = 1; i <= firstSet._power; i++)
 	{
-		for (int j = 1; j <= y.col; j++)
+		for (int j = 1; j <= SecondSet._power; j++)
 		{
-			if (x.item[i] == y.item[j])
+			if (firstSet._elements[i] == SecondSet._elements[j])
 			{
 				return 1;
 			}
