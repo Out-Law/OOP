@@ -40,6 +40,11 @@ void Interface::AddElement(int numberSet)
 	set[numberSet].AddSetElement(element);
 }
 
+void Interface::UnitySet()
+{
+
+}
+
 Interface::Interface()
 {
 	bool running = true;
@@ -66,7 +71,6 @@ Interface::Interface()
 				ChangeSet(numberSet);
 				break;
 			}
-
 			case 2: {
 				CreatedTwoSet();
 				break;
@@ -103,6 +107,6 @@ Interface::Interface()
 
 void Interface::printMenuText() {
 	cout << "\n¬ведите 1, чтобы изменить одно из множеств.\n¬ведите 2, чтобы изменить оба множества.\n"
-		"¬ведите 3, чтобы вычислить разность множеств.\n¬ведите 4, чтобы вычислить симетрическую разность множеств\n"
+		"¬ведите 3, чтобы добаувить в множество новый элемент.\n¬ведите 4, чтобы объединить множества\n"
 		"===================================================================================" << endl;
 }

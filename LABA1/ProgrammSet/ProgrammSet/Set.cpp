@@ -31,7 +31,7 @@ int Set::GetElements() const
 }
 
 //создать перегрзку для метода
-void Set::CreatedSet(int* setElements, int power)
+void Set::CreatedSet(int * setElements, int power)
 {
 	_power = power;
 	for (int i = 0; i < _power; i++)
@@ -49,28 +49,55 @@ void Set::AddSetElement(int element)//Добовление элемента в множество
 	_elements[_power] = element;
 }
 
-void Set::Unity(Set x, Set y)//функция для объединения множеств
+bool  Set::CheckCommon(Set set)
 {
-	
-}
-
-void Set::Intersection(Set x, Set y)//Функция для пересечения множеств
-{
-	
-}
-
-bool Set::isIntersection(Set firstSet, Set SecondSet)//Функция для определения наличия пересечения
-{
-	for (int i = 1; i <= firstSet._power; i++)
+	for (int i = 0; i < _power; i++)
 	{
-		for (int j = 1; j <= SecondSet._power; j++)
+		for (int j = 0; j < set._power; j++)
 		{
-			if (firstSet._elements[i] == SecondSet._elements[j])
+			if (_elements[i] == set._elements[i])
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
+	return false;
+}
 
-	return 0;
+void Set::Unity(Set firstSet, Set secondSet)//функция для объединения множеств
+{
+	bool flag = firstSet.CheckCommon(secondSet);
+	if (flag == true) 
+	{
+		_power = firstSet._power + secondSet._power;
+		_elements = new int[firstSet._power + secondSet._power];
+		memcpy(_elements, firstSet._elements, sizeof(int) * firstSet._power);
+		for (int i = firstSet._power; i < secondSet._power; i++)
+		{
+			_elements[i] = secondSet._elements[i - firstSet._power];
+		}
+	}
+	else
+	{
+
+	}
+}
+
+void Set::Intersection(Set firstSet, Set secondSet)//Функция для пересечения множеств
+{
+	bool flag = firstSet.CheckCommon(secondSet);
+	if (flag == true)
+	{
+		_power = firstSet._power + secondSet._power;
+		_elements = new int[firstSet._power + secondSet._power];
+		memcpy(_elements, firstSet._elements, sizeof(int) * firstSet._power);
+		for (int i = firstSet._power; i < secondSet._power; i++)
+		{
+			_elements[i] = secondSet._elements[i - firstSet._power];
+		}
+	}
+	else
+	{
+
+	}
 }

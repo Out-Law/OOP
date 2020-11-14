@@ -15,9 +15,9 @@ public:
 	int GetPower() const;
 	int GetElements() const;
 	void AddSetElement(int i);//Ввод элемента в множество;
-	void Unity(Set, Set);//функция для объединения множеств;
-	bool isIntersection(Set, Set);//Функция для определения наличия пересечения;
-	void Intersection(Set, Set);//Функция для пересечения множеств;
+	bool CheckCommon(Set set);//Проверка на общие элементы
+	void Unity(Set firstSet, Set secondSet);//функция для объединения множеств;
+	void Intersection(Set firstSet, Set secondSet);//Функция для пересечения множеств;
 
 	//Деструктор
 	~Set();

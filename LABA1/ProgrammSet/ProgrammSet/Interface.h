@@ -12,8 +12,6 @@ private:
 	void CreatedTwoSet();//создание двух множеств
 	void ChangeSet(int numberSet); //Изменить одно из множеств
 	void AddElement(int numberSet);//добовление элемента
-	void GetPower();
-	void GetElements();
 	void UnitySet();//объединение
 	void IntersectionSet();//пересачание
 
