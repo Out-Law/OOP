@@ -12,6 +12,8 @@ void Interface::ChangeSet(int numberSet)
 	cin >> power;
 	int* setElement = new int[power];
 
+	cout << "¬ведите "<< power <<" чисел через пробел: ";
+
 	for (int i = 0; i < power; i++)
 	{
 		cin >> setElement[i];
@@ -35,15 +37,53 @@ void Interface::CreatedTwoSet()
 
 void Interface::AddElement(int numberSet)
 {
+	cout << "¬ведите элемент: ";
 	int element;
 	cin >> element;
 	set[numberSet].AddSetElement(element);
 }
 
-void Interface::UnitySet()
+void Interface::CheckCommon()
 {
 
 }
+
+void Interface::GetPower(int numberSet)
+{
+
+}
+
+void Interface::GetElements(int numberSet)
+{
+
+}
+
+/*void Interface::UnitySet()
+{
+	int firstSetPower = set[0].GetPower(), secondSetPower = set[1].GetPower();
+
+	int* setElement = new int[firstSetPower + secondSetPower];
+
+	for (int i = 0; i < firstSetPower + secondSetPower; i++)
+	{
+		setElement[i] = 0;
+	}
+
+	Set tempSet;
+	tempSet.CreatedSet(setElement, firstSetPower + secondSetPower);
+	bool flag = false;
+	tempSet.Unity(set[0], set[1], flag);
+
+	if (flag == false)
+	{
+		cout << "ƒва множества нельз€ объеденить!" << endl;
+	}
+}
+
+void Interface::IntersectionSet()
+{
+
+}*/
 
 Interface::Interface()
 {
@@ -69,10 +109,12 @@ Interface::Interface()
 				cin >> numberSet;
 				cout << endl;
 				ChangeSet(numberSet);
+				printMenuText();
 				break;
 			}
 			case 2: {
 				CreatedTwoSet();
+				printMenuText();
 				break;
 			}
 			case 3: {
@@ -81,10 +123,12 @@ Interface::Interface()
 				cin >> numberSet;
 				cout << endl;
 				AddElement(numberSet);
+				printMenuText();
 				break;
 			}
 			case 4: {
-
+				
+				printMenuText();
 				break;
 			}
 			case 5: {
@@ -93,7 +137,7 @@ Interface::Interface()
 			}
 			case 6: {
 
-				printMenuText();
+				
 				break;
 			}
 			}
