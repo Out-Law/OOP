@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "Interface.h"
+#include <vld.H>
 
 int main()
 {

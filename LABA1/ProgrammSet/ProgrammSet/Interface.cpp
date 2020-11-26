@@ -2,17 +2,23 @@
 #include "Set.h"
 #include <iostream>
 
-using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
 
-void Interface::ChangeSet(int numberSet)
+void Interface::ChangeSet(int& numberSet)
 {
 	int power;
-
 	cout << "Введите мщность для множества: ";
 	cin >> power;
-	int* setElement = new int[power];
 
-	cout << "Введите "<< power <<" чисел через пробел: ";
+	while (power<0)
+	{
+		cout << "Ошибка: введите не отрицательное число:" << endl;
+		cin >> power;
+	}
+	cout << "Введите " << power << " чисел через пробел: ";
+	int* setElement = new int[power];
 
 	for (int i = 0; i < power; i++)
 	{
@@ -20,9 +26,9 @@ void Interface::ChangeSet(int numberSet)
 	}
 
 	set[numberSet].CreatedSet(setElement, power);
-
 	delete[] setElement;
 	cout << endl;
+	
 }
 
 
@@ -35,7 +41,7 @@ void Interface::CreatedTwoSet()
 
 }
 
-void Interface::AddElement(int numberSet)
+void Interface::AddElement(int& numberSet)
 {
 	cout << "Введите элемент: ";
 	int element;
@@ -45,112 +51,94 @@ void Interface::AddElement(int numberSet)
 
 void Interface::CheckCommon()
 {
-
-}
-
-void Interface::GetPower(int numberSet)
-{
-
-}
-
-void Interface::GetElements(int numberSet)
-{
-
-}
-
-/*void Interface::UnitySet()
-{
-	int firstSetPower = set[0].GetPower(), secondSetPower = set[1].GetPower();
-
-	int* setElement = new int[firstSetPower + secondSetPower];
-
-	for (int i = 0; i < firstSetPower + secondSetPower; i++)
+	if (set[0].CheckSetCommon(set[1]))
 	{
-		setElement[i] = 0;
+		cout << "У множеств ЕСТЬ общие элементы" << endl;
 	}
-
-	Set tempSet;
-	tempSet.CreatedSet(setElement, firstSetPower + secondSetPower);
-	bool flag = false;
-	tempSet.Unity(set[0], set[1], flag);
-
-	if (flag == false)
+	else
 	{
-		cout << "Два множества нельзя объеденить!" << endl;
+		cout << "У множеств НЕТ общх элементов " << endl;
 	}
 }
 
-void Interface::IntersectionSet()
+void Interface::GetPower(int& numberSet)
 {
+	cout << set[numberSet].GetPower();
+}
 
-}*/
+void Interface::GetElements(int& numberSet)
+{
+	for (int i = 0; i < set[numberSet].GetPower(); i++)
+	{
+		cout << set[numberSet].GetElements(i)<< ' ';
+	}
+	cout << endl;
+}
+
+int Interface::numberSet()
+{
+	int number;
+	cout << "Выбирете множество в котором будут производить изменения: 1 или 2" << endl;
+	cin >> number;
+	cout << endl;
+	return number - 1;
+}
+
+void Interface::printMenuText()
+{
+	cout << "\nВведите 1, чтобы изменить одно из множеств.\nВведите 2, чтобы изменить оба множества.\n"
+		"Введите 3, чтобы добаувить в множество новый элемент.\nВведите 4, чтобы проверить есть ли общие элементы\n"
+		"Введите 5, чтобы узнать у множества Мощность.\nВведите 6, чтобы узнать какие элементы создержит множество\n"
+		"===================================================================================" << endl;
+}
 
 Interface::Interface()
 {
 	bool running = true;
 	CreatedTwoSet();
 
-	try
+	while (running)
 	{
 		printMenuText();
-		while (running)
-		{
-			int input;
-			cin >> input;
-			switch (input) {
+
+		int input, number;
+		cin >> input;
+
+		switch (input) {
+				printMenuText();
 			case 0: {
 				running = false;
 				cout << "GoodBuy" << endl;
 				break;
 			}
 			case 1: {
-				cout << "Введите числом какое множество вы хотите изменить: ";
-				int numberSet;
-				cin >> numberSet;
-				cout << endl;
-				ChangeSet(numberSet);
-				printMenuText();
+				number = numberSet();
+				ChangeSet(number);
 				break;
 			}
 			case 2: {
 				CreatedTwoSet();
-				printMenuText();
 				break;
 			}
 			case 3: {
-				cout << "Введите числом в какое множество вы хотите добавить элемент: ";
-				int numberSet;
-				cin >> numberSet;
-				cout << endl;
-				AddElement(numberSet);
-				printMenuText();
+				number = numberSet();
+				AddElement(number);
 				break;
 			}
 			case 4: {
-				
-				printMenuText();
+				CheckCommon();
 				break;
 			}
 			case 5: {
-
+				number = numberSet();
+				GetPower(number);
 				break;
 			}
 			case 6: {
-
-				
+				number = numberSet();
+				GetElements(number);
 				break;
-			}
 			}
 		}
 	}
-	catch (int)
-	{
-		cout << "Ошибка" << endl;
-	}
-}
-
-void Interface::printMenuText() {
-	cout << "\nВведите 1, чтобы изменить одно из множеств.\nВведите 2, чтобы изменить оба множества.\n"
-		"Введите 3, чтобы добаувить в множество новый элемент.\nВведите 4, чтобы объединить множества\n"
-		"===================================================================================" << endl;
 }

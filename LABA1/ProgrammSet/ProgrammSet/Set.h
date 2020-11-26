@@ -2,22 +2,21 @@
 class Set
 {
 private:
-	int _power = 0;//Переменная для задания количества элементов множества;
-	int* _elements = nullptr;//Переменная для хранения значений элементов множества;
+	int _power = 0;
+	int* _elements = nullptr;
 
 public:
 	//Конструкторы:
-	Set();//Пустой консруктор;
-	Set(int power);//Конструктор с параметрами;
+	Set();
+	Set(int& power);
+	Set(int* setElements, int& power);
 
 	//Методы:
-	void CreatedSet(int* setElement, int power);
+	void CreatedSet(int* setElement, int& power);
 	int GetPower() const;
-	int GetElements() const;
-	void AddSetElement(int i);//Ввод элемента в множество;
-	bool CheckSetCommon(Set set);//Проверка на общие элементы
-	//void Unity(Set firstSet, Set secondSet, bool flagOne);//функция для объединения множеств;
-	//void Intersection(Set firstSet, Set secondSet);//Функция для пересечения множеств;
+	int GetElements(int count) const;
+	void AddSetElement(int& element);//Ввод элемента в множество;
+	bool CheckSetCommon(Set& set);//Проверка на общие элементы
 
 	//Деструктор
 	~Set();
