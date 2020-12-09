@@ -16,7 +16,7 @@ public:
 	int GetPower() const;
 	int GetElements(int count) const;
 	void AddSetElement(int& element);//Ввод элемента в множество;
-	bool CheckSetCommon(Set& set);//Проверка на общие элементы
+	bool CheckSetCommon(Set& set) const;//Проверка на общие элементы
 
 	//Деструктор
 	~Set();

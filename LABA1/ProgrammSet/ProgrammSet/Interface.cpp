@@ -31,6 +31,10 @@ void Interface::ChangeSet(int& numberSet)
 	
 }
 
+Interface::~Interface()
+{
+	delete[] set;
+}
 
 void Interface::CreatedTwoSet()
 {
@@ -49,7 +53,7 @@ void Interface::AddElement(int& numberSet)
 	set[numberSet].AddSetElement(element);
 }
 
-void Interface::CheckCommon()
+void Interface::CheckCommon() const
 {
 	if (set[0].CheckSetCommon(set[1]))
 	{
@@ -61,12 +65,12 @@ void Interface::CheckCommon()
 	}
 }
 
-void Interface::GetPower(int& numberSet)
+void Interface::GetPower(int& numberSet) const
 {
 	cout << set[numberSet].GetPower();
 }
 
-void Interface::GetElements(int& numberSet)
+void Interface::GetElements(int& numberSet) const
 {
 	for (int i = 0; i < set[numberSet].GetPower(); i++)
 	{
