@@ -4,20 +4,19 @@
 
 using std::cin;
 using std::cout;
-using std::endl;
 
 void Interface::ChangeSet(int& numberSet)
 {
 	int power;
-	cout << "Введите мщность для множества: ";
+	cout << "Enter the power for the set: ";
 	cin >> power;
 
 	while (power<0)
 	{
-		cout << "Ошибка: введите не отрицательное число:" << endl;
+		cout << "Error: enter a non-negative number:\n";
 		cin >> power;
 	}
-	cout << "Введите " << power << " чисел через пробел: ";
+	cout << "Enter " << power << " numbers separated by a space: ";
 	int* setElement = new int[power];
 
 	for (int i = 0; i < power; i++)
@@ -25,9 +24,9 @@ void Interface::ChangeSet(int& numberSet)
 		cin >> setElement[i];
 	}
 
-	set[numberSet].CreatedSet(setElement, power);
+	set[numberSet].CreateSet(setElement, power);
 	delete[] setElement;
-	cout << endl;
+	cout << '\n';
 	
 }
 
@@ -47,7 +46,7 @@ void Interface::CreatedTwoSet()
 
 void Interface::AddElement(int& numberSet)
 {
-	cout << "Введите элемент: ";
+	cout << "Enter an item: ";
 	int element;
 	cin >> element;
 	set[numberSet].AddSetElement(element);
@@ -57,17 +56,17 @@ void Interface::CheckCommon() const
 {
 	if (set[0].CheckSetCommon(set[1]))
 	{
-		cout << "У множеств ЕСТЬ общие элементы" << endl;
+		cout << "Sets have common elements\n";
 	}
 	else
 	{
-		cout << "У множеств НЕТ общх элементов " << endl;
+		cout << "Sets haven't common elements\n";
 	}
 }
 
 void Interface::GetPower(int& numberSet) const
 {
-	cout << set[numberSet].GetPower();
+	cout << set[numberSet].GetPower() << '\n';;
 }
 
 void Interface::GetElements(int& numberSet) const
@@ -76,73 +75,100 @@ void Interface::GetElements(int& numberSet) const
 	{
 		cout << set[numberSet].GetElements(i)<< ' ';
 	}
-	cout << endl;
+	cout << '\n';
 }
 
 int Interface::numberSet()
 {
+	bool flag = true;
 	int number;
-	cout << "Выбирете множество в котором будут производить изменения: 1 или 2" << endl;
-	cin >> number;
-	cout << endl;
+
+	while (flag) {
+		cout << "Select the set to make changes to: 1 or 2\n";
+		cin >> number;
+		if (number <= 0 || number >= 3)
+		{
+			cout << "Error: Wrong number entered. Try again!\n";
+		}
+		else
+		{
+			flag = false;
+		}
+	}
+	cout << '\n';
 	return number - 1;
 }
 
 void Interface::printMenuText()
 {
-	cout << "\nВведите 1, чтобы изменить одно из множеств.\nВведите 2, чтобы изменить оба множества.\n"
-		"Введите 3, чтобы добаувить в множество новый элемент.\nВведите 4, чтобы проверить есть ли общие элементы\n"
-		"Введите 5, чтобы узнать у множества Мощность.\nВведите 6, чтобы узнать какие элементы создержит множество\n"
-		"===================================================================================" << endl;
+	cout << "\n1 - Change one set.\n2 - Change both sets.\n"
+		"3 - Add a new element to the set.\n4 - Check whether there are common elements\n"
+		"5 - Find out The power from the set.\n6 - Find out which elements the set contains\n"
+		"7 - Help.\nAny other value - Exit.\n"
+		"===================================================================================\n";
 }
 
-Interface::Interface()
+void Interface::Go()
 {
 	bool running = true;
 	CreatedTwoSet();
+	printMenuText();
 
 	while (running)
 	{
-		printMenuText();
+		try
+		{
+			int input, number;
+			cin >> input;
 
-		int input, number;
-		cin >> input;
-
-		switch (input) {
-				printMenuText();
-			case 0: {
-				running = false;
-				cout << "GoodBuy" << endl;
-				break;
+			switch (input) {
+					printMenuText();
+				case 0: {
+					running = false;
+					cout << "GoodBuy\n";
+					break;
+				}
+				case 1: {
+					number = numberSet();
+					ChangeSet(number);
+					break;
+				}
+				case 2: {
+					CreatedTwoSet();
+					break;
+				}
+				case 3: {
+					number = numberSet();
+					AddElement(number);
+					break;
+				}
+				case 4: {
+					CheckCommon();
+					break;
+				}
+				case 5: {
+					number = numberSet();
+					GetPower(number);
+					break;
+				}
+				case 6: {
+					number = numberSet();
+					GetElements(number);
+					break;
+				}
+				case 7: {
+					printMenuText();
+					break;
+				}
+				default: {
+					running = false;
+					break;
+				}
 			}
-			case 1: {
-				number = numberSet();
-				ChangeSet(number);
-				break;
-			}
-			case 2: {
-				CreatedTwoSet();
-				break;
-			}
-			case 3: {
-				number = numberSet();
-				AddElement(number);
-				break;
-			}
-			case 4: {
-				CheckCommon();
-				break;
-			}
-			case 5: {
-				number = numberSet();
-				GetPower(number);
-				break;
-			}
-			case 6: {
-				number = numberSet();
-				GetElements(number);
-				break;
-			}
+		}
+		catch (int err)
+		{
+			cout << "Error" << err << '\n';
 		}
 	}
 }

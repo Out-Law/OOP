@@ -4,7 +4,7 @@
 class Interface
 {
 public:
-	Interface();
+	void Go();
 	~Interface();
 private:
 	Set* set = new Set[2];

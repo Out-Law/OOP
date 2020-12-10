@@ -2,7 +2,7 @@
 #include <string>
 #include <algorithm>
 
-Set::Set(){} // Пустой конструктор
+Set::Set(){}
 
 Set::Set(int& power)
 {
@@ -10,7 +10,7 @@ Set::Set(int& power)
 	_power = power;
 }
 
-Set::~Set()//Деструктор удаляющий объект класса
+Set::~Set()
 {
 	delete[] _elements;
 }
@@ -20,20 +20,20 @@ int Set::GetPower() const
 	return _power;
 }
 
-//проверить выведит один или несколько элементов
-int Set::GetElements(int count) const
+int Set::GetElements(int id) const
 {
-	return _elements[count];
+	return _elements[id];
 }
 
-void Set::CreatedSet(int* setElements, int& power)
+void Set::CreateSet(int* setElements, int& power)
 {
 	_power = power;
 	_elements = new int[power];
 	std::copy(setElements, setElements + power, _elements);
+	std::sort(_elements, _elements + _power);
 }
 
-void Set::AddSetElement(int& element)//Добовление элемента в множество
+void Set::AddSetElement(int& element)
 {
 	if (std::binary_search(_elements, _elements + _power, element)) {
 		return;
@@ -41,11 +41,11 @@ void Set::AddSetElement(int& element)//Добовление элемента в множество
 
 	int* tempElements = _elements;
 	_elements = new int[_power+1];
-	memcpy(_elements, tempElements, sizeof(int) * _power);
+	//memcpy(_element, tempElements, sizeof(int) * _power);
+	std::copy(tempElements, tempElements + _power, _elements);
 	delete[] tempElements;
 	_elements[_power] = element;
 	_power++;
-
 	std::sort(_elements, _elements + _power);
 }
 
