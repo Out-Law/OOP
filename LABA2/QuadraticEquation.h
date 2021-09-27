@@ -3,7 +3,7 @@
 
 class QuadraticEquation :public Solution {
 public:
-	QuadraticEquation(double a, double b, double c) :Solution(a, b, c){}
+	QuadraticEquation(double a, double b, double c);
 
 	virtual std::vector<double> CalculateXResult() override;
 

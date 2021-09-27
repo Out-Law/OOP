@@ -1,8 +1,12 @@
 #include "Solution.h"
 
-Solution::Solution(double a, double b, double c)
+Solution::Solution(const std::vector<double>& ratioVector)
+	: _ratio(ratioVector)
 {
-	_a = a;
-	_b = b;
-	_c = c;
+	
+}
+
+double Solution::GetRatio(int i) const
+{
+	return _ratio[i];
 }

@@ -3,7 +3,8 @@
 
 class LinearEquation : public Solution {
 public:
-	LinearEquation(double a, double b, double c):Solution(a, b, c) {};
+	LinearEquation(double a, double b);
+	//LinearEquation() = default;
 
 	virtual std::vector<double> CalculateXResult() override;
 };
