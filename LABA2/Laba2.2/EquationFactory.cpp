@@ -6,11 +6,11 @@ Solution* EquationFactory::createEquation(char T, const std::vector<double>& par
 	{
 		return new LinearEquation(params[0], params[1]);
 	}
-	case 'K':
+	case 'Q':
 	{
 		return new QuadraticEquation(params[0], params[1], params[2]);
 	}
 	default:
-		throw std::exception("Некорректный тип фигуры");
+		throw std::exception("Incorrect equation type!");
 	}
 }

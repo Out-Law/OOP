@@ -56,7 +56,7 @@ void Interface::createEquation()
 		cout << "\n---Equation #" << i + 1 << "---" << endl;
 
 
-		cout << "What equation to create? | (L) - linear equation, (K) - quadratic equation" << std::endl;
+		cout << "What equation to create? | (L) - linear equation, (Q) - quadratic equation" << std::endl;
 		cin >> T;
 
 		if (T == 'L')
@@ -64,22 +64,12 @@ void Interface::createEquation()
 			cout << "Enter coefficients a, b (a * x - b)" << endl;
 			cin >> params[0] >> params[1];
 		}
-		else
+		if (T == 'Q')
 		{
 			cout << "Enter coefficients a, b, c (a * x - b * x + c + 0)" << endl;
 			cin >> params[0] >> params[1] >> params[2];
-
 		}
-
-		try
-		{
-			_equation[i] = EquationFactory().createEquation(T, params);
-		}
-		catch (const std::logic_error& error)
-		{
-			cout << error.what() << endl;
-			i = i - 1;
-		}
+		_equation[i] = EquationFactory().createEquation(T, params);
 	}
 }
 
@@ -93,30 +83,38 @@ void Interface::dialog()
 		int input;
 		cin >> input;
 
-		switch (input) 
+		try
 		{
-			case 0: 
+
+			switch (input)
 			{
-				running = false;
-				cout << "GoodBuy\n";
-				break;
-			}
-			case 1:
-			{
-				auto result = _equation[figureID()]->CalculateXResult();
-				for (double i : result)
+				case 0:
 				{
-					cout << i << endl;
+					running = false;
+					cout << "GoodBuy\n";
+
+				}
+				break;
+				case 1:
+				{
+					auto result = _equation[figureID()]->CalculateXResult();
+					for (double i : result)
+					{
+						cout << i << endl;
+					}
+				}
+				break;
+				default:
+				{
+					running = false;
 				}
 				break;
 			}
-			default: 
-			{
-				running = false;
-				break;
-			}
 		}
-
+		catch (const std::logic_error& error)
+		{
+			cout << error.what() << endl;
+		}
 	}
 }
 
