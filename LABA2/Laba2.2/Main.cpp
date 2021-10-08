@@ -7,5 +7,6 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	Interface interface;
 	interface.Go();
+
 	return 0;
 }

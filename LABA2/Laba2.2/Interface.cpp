@@ -98,9 +98,9 @@ void Interface::dialog()
 				case 1:
 				{
 					auto result = _equation[figureID()]->CalculateXResult();
-					for (double i : result)
+					for (int i = 0 ; i < result.Size(); i++)
 					{
-						cout << i << endl;
+						cout << result[i] << endl;
 					}
 				}
 				break;

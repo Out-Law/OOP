@@ -2,7 +2,7 @@
 #include <stdexcept>
 
 QuadraticEquation::QuadraticEquation(double a, double b, double c)
-	: Solution(std::vector<double>({ a, b, c }))
+	: Solution({a, b, c})
 {
 
 }
@@ -15,15 +15,15 @@ void QuadraticEquation::CheckDisscriminant()
 	}
 }
 
-std::vector<double> QuadraticEquation::CalculateXResult()
+Array QuadraticEquation::CalculateXResult()
 {
 	CheckDisscriminant();
 
-	std::vector<double> result(0);
-	result.push_back((-GetRatio(0) + sqrt(pow(GetRatio(0), 2) - 
-		4 * GetRatio(1) * GetRatio(2))) / (2 * GetRatio(1)));
-	result.push_back((-GetRatio(0) - sqrt(pow(GetRatio(0), 2) 
-		- 4 * GetRatio(1) * GetRatio(2))) / (2 * GetRatio(1)));
+	double x1 = (-GetRatio(1) + sqrt(pow(GetRatio(1), 2) -
+		4 * GetRatio(0) * GetRatio(2))) / (2 * GetRatio(0));
 
-	return result;
+	double x2 = (-GetRatio(1) - sqrt(pow(GetRatio(1), 2) -
+		4 * GetRatio(0) * GetRatio(2))) / (2 * GetRatio(0));
+
+	return Array({x1, x2});
 }

@@ -7,5 +7,5 @@ class LinearEquation : public Solution {
 public:
 	LinearEquation(double a, double b);
 	
-	virtual int *CalculateXResult() override;
+	virtual Array CalculateXResult() override;
 };
