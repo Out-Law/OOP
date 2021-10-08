@@ -7,6 +7,8 @@ public:
 
 	virtual std::vector<double> CalculateXResult() override;
 
+
+
 private:
 	void CheckDisscriminant();
 };

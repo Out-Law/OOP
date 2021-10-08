@@ -1,12 +1,13 @@
 #include "LinearEquation.h"
 
 LinearEquation::LinearEquation(double a, double b)
-	: Solution(std::vector<double>({a, b}))
+	: Solution(new double[2]{a, b}, 2)
 {
-
+		
 }
 
-std::vector<double> LinearEquation::CalculateXResult()
+int *LinearEquation::CalculateXResult()
 {
-	return std::vector<double>(1, -GetRatio(0) / GetRatio(1));
+	//return std::vector<double>(1, -GetRatio(0) / GetRatio(1));
+	return 0;
 }

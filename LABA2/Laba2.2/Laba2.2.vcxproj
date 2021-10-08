@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Array.cpp" />
     <ClCompile Include="EquationFactory.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="LinearEquation.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="Solution.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Array.h" />
     <ClInclude Include="EquationFactory.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="LinearEquation.h" />

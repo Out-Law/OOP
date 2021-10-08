@@ -1,9 +1,15 @@
 #include "Solution.h"
 
-Solution::Solution(const std::vector<double>& ratioVector)
-	: _ratio(ratioVector)
+Solution::Solution(double* ratio, int power)
+	: _ratio(new double[power])
 {
-	
+	std::copy(ratio, ratio + power, _ratio);
+	delete[] ratio;
+}
+
+Solution::~Solution()
+{
+	delete[] _ratio;
 }
 
 double Solution::GetRatio(int i) const

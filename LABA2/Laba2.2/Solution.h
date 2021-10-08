@@ -1,21 +1,26 @@
 #pragma once
 #include <cmath>
 #include <vector>
+#include <iostream>
+#include <Array>
+
+using std::cout;
 
 class Solution
 {
 public:
-	Solution(const std::vector<double>& ratioVector);
+	Solution(double* ratio, int power);
 
-	virtual std::vector<double> CalculateXResult() = 0;
+	virtual int *CalculateXResult() = 0;
 
-	virtual  ~Solution() = default;
+	virtual  ~Solution();
 
 protected:
 	double GetRatio(int i) const;
 
 private:
-	std::vector<double> _ratio;
+	//std::vector<double> _ratio;
+	Array* _ratio = nullptr;
 
 
 };
