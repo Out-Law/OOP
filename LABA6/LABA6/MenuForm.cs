@@ -82,10 +82,17 @@ namespace LABA6
 
 		private void buttonArgumentOutput(object sender, EventArgs e)
 		{
-			List<double> result = _equation[figureID()].CalculateXResult();
-			foreach (double i in result)
+			try
 			{
-				MessageBox.Show(Convert.ToString(i));
+				List<double> result = _equation[figureID()].CalculateXResult();
+				foreach (double i in result)
+				{
+					MessageBox.Show(Convert.ToString(i));
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Ошибка: {ex.Message}");
 			}
 		}
 
