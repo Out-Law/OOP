@@ -1,0 +1,11 @@
+C:\Users\DNS\Desktop\LABA6\LABA6\obj\Debug\LABA6.csproj.AssemblyReference.cache
+C:\Users\DNS\Desktop\LABA6\LABA6\obj\Debug\LABA6.Properties.Resources.resources
+C:\Users\DNS\Desktop\LABA6\LABA6\obj\Debug\LABA6.csproj.GenerateResource.cache
+C:\Users\DNS\Desktop\LABA6\LABA6\obj\Debug\LABA6.csproj.CoreCompileInputs.cache
+C:\Users\DNS\Desktop\LABA6\LABA6\bin\Debug\LABA6.exe.config
+C:\Users\DNS\Desktop\LABA6\LABA6\bin\Debug\LABA6.exe
+C:\Users\DNS\Desktop\LABA6\LABA6\bin\Debug\LABA6.pdb
+C:\Users\DNS\Desktop\LABA6\LABA6\obj\Debug\LABA6.exe
+C:\Users\DNS\Desktop\LABA6\LABA6\obj\Debug\LABA6.pdb
+C:\Users\DNS\Desktop\LABA6\LABA6\obj\Debug\LABA6.MenuForm.resources
+C:\Users\DNS\Desktop\LABA6\LABA6\obj\Debug\LABA6.StartForm.resources
